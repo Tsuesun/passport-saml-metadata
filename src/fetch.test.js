@@ -1,15 +1,16 @@
-const assert = require('assert')
-const axios = require('axios')
-const MockAdapter = require('axios-mock-adapter')
-const fs = require('fs')
-const path = require('path')
+import assert from 'assert'
+import axios from 'axios'
+import MockAdapter from 'axios-mock-adapter'
+import fs from 'fs'
+import { describe, test, beforeEach } from '@jest/globals'
+import path from 'path'
 
-const fetch = require('../src/fetch')
+import fetch from './fetch'
 
 const backupStore = new Map()
 
 const url = '/test/data/metadata.xml'
-const metadata = fs.readFileSync(path.join(__dirname, 'data', 'metadata.xml')).toString()
+const metadata = fs.readFileSync(path.resolve('resources', 'metadata.xml')).toString()
 
 describe('fetch()', () => {
   const axiosMock = new MockAdapter(axios)
